@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Главная</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style= "background: linear-gradient(to top, white, white)">
+<div th:insert="blocks/nav :: nav"></div>
+<div>
+    <p style="position: absolute; padding-top: 100px; font-size: 45px; padding-left:20px">Школа изучения <br>иностранных языков <br>начиная с любого уровня<br></p>
+    <img src="/img/backgrс.jpg" width="100%" style="opacity:0.2">
+</div>
+<section class="text-center testimonials">
+    <div class="container">
+        <h2 class="mb-5">О нас</h2>
+        <p style="font-size: 30px;"><strong>LangClub - специализированная школа, обучающая разговорным языкам по кембриджской методике</strong></p>
+        <p style="font-size: 22px">Кембриджская методика - это методика изучения разговорного языка
+            через погружение в языковую среду. Здесь нет скучных учебников и заучиваний правил:
+            только моделирование ситуаций и постоянное общение. Уже через несколько месяцев вы начинаете
+            свободно путешествовать, общаться с иностранцами или устраиваетесь на работу, где
+            требуется владение языком.</p><br>
+    </div>
+    <div сlass="container" style="background: #333; padding-top:30px"><p style="color: white; font-size: 24px; text-align: center; padding-top: 20px; padding-bottom: 50px">
+        Школа LangClub - одна из немногих в Минске,
+        которая гарантирует результат <br>по договору:<br>
+        либо Вы повышаете уровень языка за курс,<br>
+        либо проходите повторное обучение за счет школы (бесплатно).</p></div>
+
+    <div class="container" style="padding-top:100px">
+        <h2 class="mb-5">Ключевые особенности школы LangClub и отличия от других школ</h2>
+        <p style="padding-top:50px">
+            <img src="/img/native(2).jpg" width="400px" align="left" style="padding-right: 20px">
+        <h2 class="mb-5" style="text-align: right">Занятия с носителями языка</h2>
+        <p style="text-align: right; font-size: 20px">В нашей школе вы не просто погружаетесь в языковую среду.
+            Среди наших преподавателей - носители языка. Каждое занятие с ними это как
+            образовательная поездка за рубеж. Вы наверняка слышали, что люди,
+            которые попадают в среду иностранцев, в разы и даже в десятки раз
+            быстрее осваивают язык.</p></p>
+
+        <p style="padding-top: 120px">
+            <img src="/img/lclub.png" width="400px" align="right" style="padding-left: 20px">
+        <h2 class="mb-5" style="text-align: left">Языковой клуб</h2>
+        <p style="text-align: left; font-size: 20px">Это гордость школы.
+            Каждую пятницу студенты собираются и вместе проводят время:
+            общаются, играют в игры или смотрят фильмы. Главное условие:
+            все на иностранном языке. И это всегда весело! Некоторые студенты
+            в языковом клубе находят свою любовь, и это прекрасно!</p>
+        </p>
+
+        <p style="padding-top: 120px">
+            <img src="/img/parking.jpg" width="400px" align="left" style="padding-right: 20px">
+        <h2 class="mb-5" style="text-align: right">Бесплатная парковка</h2>
+        <p style="text-align: right; font-size: 20px">Найти парковочное место в центре города либо дорого
+            (до 5 рублей в час), либо невозможно. Мы это понимаем, поэтому все предусмотрели.
+            Когда вы приезжаете в школу на своем автомобиле, то получаете бесплатное
+            парковочное место на время обучения. Это удобно. Парковка в 5 минутах ходьбы от
+            школы.</p>
+        </p>
+
+        <p style="padding-top: 120px">
+            <img src="/img/group.jpg" width="350px" align="right" style="padding-left: 20px">
+        <h2 class="mb-5" style="text-align: left">Малокомплектные группы по 3-12 человек</h2>
+        <p style="text-align: left; font-size: 20px">Практика показывает, что в небольших группах,
+            где в среднем 7-9 человек, обучение идет наиболее продуктивно. Так и преподаватель
+            уделяет каждому студенту максимум времени, и студенты находят себе собеседников по
+            возрасту и интересам.</p>
+        </p>
+
+    </div>
+</section>
+<section class="text-center testimonials" style="background:WhiteSmoke; outline: 3px solid black">
+    <div class="container">
+        <h2 class="mb-5">Наши преподаватели</h2>
+        <div th:if="${role == 'MANAGER'}" class="row" style="margin: 10px -12px;">
+            <div class="col-lg-4 col-xl-12"><a class="btn btn-success" role="button" href="/teachers/add" style="background: #333; color:#fff; border:0px">Добавить
+                преподавателя</a>
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0"></div>
+            </div>
+        </div>
+        <div th:each="t : ${teachers}" class="row" style="margin-bottom: 10px;">
+            <div class="col">
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0">
+                    <img class="rounded-circle img-fluid mb-3" th:src="'/img/' + ${t.file}">
+                    <h5 th:text="${t.name}"></h5>
+                </div>
+            </div>
+            <div class="col">
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">Тел: +<span
+                        th:text="${t.tel}"></span></p>
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">Количество учеников: <span
+                        th:text="${t.exp}"></span></p>
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">Дни занятий: <span
+                        th:text="${t.spec}"></span></p>
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">О себе: <span
+                        th:text="${t.ach}"></span></p>
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">Почтовый адрес: <span
+                        th:text="${t.email}"></span></p>
+            </div>
+            <div th:if="${role == 'MANAGER'}" class="col" style="max-width: 270px;">
+                <a class="btn btn-success" role="button" style="margin-right: 15px; background:#333; color:#fff; border: 0px"
+                   th:href="'/teachers/edit/' + ${t.id}">Редактировать</a>
+                <a class="btn btn-danger" role="button" th:href="'/teachers/delete/' + ${t.id}" style="background:rgb(255,0,61); color:#fff; border: 0px;">Удалить</a></div>
+        </div>
+    </div>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bs-init.js"></script>
+</section>
+<section class="text-center testimonials">
+    <div class="container">
+        <iframe width="75%" height="550" src="https://www.youtube.com/embed/Z0uWXqbnlLo" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+    </div>
+</section>
+</body>
+<footer style="background-color: #333" >
+    <div style="display: inline-block; width: 100%; text-align: center">
+        <p class="navbar-brand" style="font-size:20px; color:white; padding-top: 15px">LangClub</p>
+        <p style="color: white; margin-left: 20px; margin-top: 10px; margin-bottom: 10px; font-size: 14px">
+            ЧАСТНОЕ УЧРЕЖДЕНИЕ ОБРАЗОВАНИЯ<br>
+            «УЧЕБНЫЙ ЦЕНТР «ОБРАЗОВАТЕЛЬНЫЕ ТЕХНОЛОГИИ»<br>
+            ЮРИДИЧЕСКИЙ (ПОЧТОВЫЙ) АДРЕС:<br>
+            220004, Г. МИНСК, УЛ. РАКОВСКАЯ, 25/1<br>
+            Р/С BY37TECN30151212200020000000 В ОАО «ТЕХНОБАНК»,<br>
+            Г. МИНСК, УЛ. КРОПОТКИНА, 44<br>
+            БИК TECNBY22, УНП 191197619</p>
+    </div>
+    <div style="font-size: 14px; color:white; text-align: center; margin-right: 20px;">+375(29) 779-97-23</div>
+</footer>
+</html>

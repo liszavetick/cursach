@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Учебный профиль</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: white">
+<div th:insert="blocks/nav :: nav"></div>
+<section class="text-center  testimonials">
+    <div class="container" style="border: 3px solid rgb(255,0,61); width: 350px; height: 450px; background: rgb(255,0,61)">
+        <div th:if="${param.error}" class="alert alert-warning" role="alert" >
+            <strong>Некорректный ввод логина или пароля!</strong>
+        </div>
+        <h2 class="mb-5" style="padding-bottom: 30px; padding-top: 60px; color:#fff">Войдите в ваш профиль</h2>
+        <form action="/login" method="post">
+            <div class="d-xl-flex justify-content-xl-center" style="margin-bottom: 10px;" >
+                <div class="row d-xl-flex" style="max-width: 500px">
+                    <div class="col"><input class="form-control" type="text" name="username" placeholder="Логин"></div>
+                </div>
+            </div>
+            <div class="d-xl-flex justify-content-xl-center" style="margin-bottom: 10px;">
+                <div class="row d-xl-flex" style="max-width: 500px;">
+                    <div class="col"><input class="form-control" type="password" name="password" placeholder="Пароль"></div>
+                </div>
+            </div>
+            <div class="d-xl-flex justify-content-xl-center" style="margin-bottom: 10px;">
+                <div class="row d-xl-flex" style="max-width: 500px;">
+                    <div class="col" style="padding-top:30px">
+                        <button class="btn btn-success" type="submit" style="background:#fff; color:#333; border: 0px;">Войти</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bs-init.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<nav th:fragment="nav" class="navbar navbar-light navbar-expand navigation-clean" style="background:#333">
+    <div class="container" >
+        <a class="navbar-brand" href="/" style="font-size: 30px; color:#fff">LangClub</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"></button>
+        <div class="collapse navbar-collapse" id="navcol-2">
+            <ul class="navbar-nav me-auto" style="font-size: 24px;">
+                <li class="nav-item"><a class="nav-link" href="/subs" style="color:#fff">Занятия</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/users" style="color:#fff">Клиентская база</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/stats" style="color:#fff">Статистика</a></li>
+                <li th:if="${role == 'CLIENT'}" class="nav-item"><a class="nav-link" href="/subs/my" style="color:#fff">Курсы английского</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/progress" style="color:#fff">Продвижение учащихся</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/login" style="color:#fff">Учебный профиль</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/reg" style="color:#fff">Новый профиль</a></li>
+                <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/logout" style="color:#fff">Выход</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

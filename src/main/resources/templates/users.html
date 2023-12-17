@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Клиентская база</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: rgb(255,0,61)">
+<div th:insert="blocks/nav :: nav"></div>
+<section class="text-center testimonials">
+    <div class="container">
+        <div th:if="${message}" class="alert alert-warning" role="alert">
+            <strong th:text="${message}"></strong>
+        </div>
+        <h2 class="mb-5" style="color:#fff">Клиентская база</h2>
+        <div class="row">
+            <div class="col">
+                <h3 style="color:#fff">ФИО</h3>
+            </div>
+            <div class="col">
+                <h3 style="color:#fff">Роль</h3>
+            </div>
+            <div class="col" style="max-width: 150px;"></div>
+            <div class="col" style="max-width: 150px;"></div>
+        </div>
+        <form th:each="u : ${users}" style="margin: 0px -12px;margin-bottom: 10px;" method="post"
+              th:action="'/users/edit/' + ${u.id}">
+            <div class="row" style="width: auto;">
+                <div class="col">
+                    <input class="form-control" type="text" th:value="${u.username}" readonly="">
+                </div>
+                <div class="col">
+                    <select class="form-select" name="role" required="">
+                        <option th:each="r : ${roles}" th:selected="${r == u.role}" th:label="${r.name}"
+                                th:value="${r}">role
+                        </option>
+                    </select>
+                </div>
+                <div class="col" style="max-width: 150px;">
+                    <button class="btn btn-success" type="submit" style="color: #333; background:#fff; border:0px">Обновить</button>
+                </div>
+                <div class="col" style="max-width: 150px;"><a class="btn btn-danger" role="button" th:href="'/users/delete/' + ${u.id}" style="color:#fff; background:#333">Удалить</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bs-init.js"></script>
+</body>
+
+</html>

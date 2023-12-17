@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Продвижение учащихся</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: #94dee1">
+<div th:insert="blocks/nav :: nav"></div>
+<section class="text-center testimonials">
+    <div class="container">
+        <h2 class="mb-5">Продвижение учащихся</h2>
+        <div class="row">
+            <div th:each="p : ${purchased}" class="col-3" style="margin-bottom: 10px;">
+                <img th:src="'/img/' + ${p.sub.file}" style="border-radius: 30px;padding: 5px;" width="100%">
+                <h3 th:text="${p.sub.name}"></h3>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Ученик:
+                    <span th:text="${p.owner.username}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Преподаватель:
+                    <span th:text="${p.teacher.name}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Статус:
+                    <span th:text="${p.status.name}"></span></p>
+                <p th:if="${p.teacher}" class="text-start" style="font-size: 20px;margin-bottom: 0;">Пройдено уроков:
+                    <span th:text="${p.count}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Количество уроков: <span
+                        th:text="${p.sub.modules}"></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bs-init.js"></script>
+</body>
+
+</html>

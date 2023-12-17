@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Курсы английского</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: #fff">
+<div th:insert="blocks/nav :: nav"></div>
+<section class="text-center testimonials">
+    <div class="container">
+        <h2 class="mb-5">Курсы</h2>
+        <div class="row">
+            <div th:each="p : ${purchased}" class="col-xl-4" style="margin-bottom: 10px;">
+                <img th:src="'/img/' + ${p.sub.file}" style="border-radius: 30px;padding: 5px;" width="100%">
+                <h3 th:text="${p.sub.name}"></h3>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Преподаватель:
+                    <span th:text="${p.teacher.name}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Статус:
+                    <span th:text="${p.status.name}"></span></p>
+                <p th:if="${p.teacher}" class="text-start" style="font-size: 20px;margin-bottom: 0;">Пройдено уроков:
+                    <span th:text="${p.count}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Дни занятий: <span
+                        th:text="${p.sub.spec}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Количество уроков: <span
+                        th:text="${p.sub.modules}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Время прохождения <span
+                        th:text="${p.sub.time}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Уровень сложности: <span
+                        th:text="${p.sub.complexity}"></span>></p>
+                <a th:if="${p.status.name() == 'IN_PROGRESS'}" class="btn btn-success" role="button" th:href="'/subs/my/progress/' + ${p.id}" style="margin-top: 5px;background:#333; color:#fff; border:0px">Модуль пройден</a>
+                <a th:if="${p.status.name() == 'IN_PROGRESS'}" class="btn btn-danger" role="button" th:href="'/subs/my/delete/' + ${p.id}" style="margin-top: 5px; background:rgb(255,0,61); color:#fff; border:0px">Отменить</a>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bs-init.js"></script>
+</body>
+
+</html>

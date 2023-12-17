@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Редактировать учебную программу</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body style="background: #94dee1">
+<div th:insert="blocks/nav :: nav"></div>
+<section class="text-center testimonials">
+    <div class="container">
+        <div th:if="${message}" class="alert alert-warning" role="alert">
+            <strong th:text="${message}"></strong>
+        </div>
+        <h2 class="mb-5">Редактировать учебную программу</h2>
+        <form th:action="'/subs/edit/' + ${sub.id}" method="post" enctype="multipart/form-data">
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Название</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="text" name="name" required=""
+                                                     th:value="${sub.name}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Дни занятий</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="text" name="spec" required=""
+                                                     th:value="${sub.spec}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Количество уроков</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="number" name="modules" value="1" min="1"
+                                                     max="100" step="1" required="" th:value="${sub.modules}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Время прохождения</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="time" name="time" required=""
+                                                     th:value="${sub.time}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Уровень сложности</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="text" name="complexity" required=""
+                                                     th:value="${sub.complexity}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Изображение</span></div>
+                        <div class="col-xl-8">
+                            <input class="form-control" type="file" accept="image/*" name="file">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Описание (опционально)</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="text" name="description"
+                                                     th:value="${sub.description}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-xl-flex" style="margin-bottom: 10px;">
+                <div class="col d-xl-flex justify-content-xl-start">
+                    <button class="btn btn-success" type="submit" style="margin-right: 10px;">Обновить</button>
+                    <button class="btn btn-dark" type="reset">Очистить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bs-init.js"></script>
+</body>
+
+</html>

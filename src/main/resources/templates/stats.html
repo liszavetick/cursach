@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Статистика</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: #fff">
+<div th:insert="blocks/nav :: nav"></div>
+<section class="text-center testimonials">
+    <div class="container">
+        <h2 class="mb-5" style="color:rgb(255,0,61)">Статистика</h2>
+        <div class="row">
+            <div class="col"><p class="lead">Ученик</p></div>
+            <div class="col"><p class="lead">Количество курсов проходит</p></div>
+            <div class="col"><p class="lead">Количество модулей пройдено</p></div>
+        </div>
+        <div class="row">
+            <div th:each="i : ${users}" th:if="${i.role.name() == 'CLIENT'}" class="col-12 mb-3">
+                <div class="row">
+                    <div class="col" style="background:rgb(255,0,61);">
+                        <p th:text="${i.username}" style="padding-top:10px; color:#fff"></p>
+                    </div>
+                    <div class="col" style="background:rgb(255,0,61);">
+                        <p th:text="${i.purchased.size()}" style="padding-top:10px; color:#fff"></p>
+                    </div>
+                    <div class="col" style="background:rgb(255,0,61);">
+                        <p th:text="${i.modulesCount()}" style="padding-top:10px; color:#fff"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bs-init.js"></script>
+</body>
+
+</html>

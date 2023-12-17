@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Добавить учебную программу</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body style="background: #94dee1">
+<div th:insert="blocks/nav :: nav"></div>
+<section class="text-center testimonials">
+    <div class="container">
+        <div th:if="${message}" class="alert alert-warning" role="alert">
+            <strong th:text="${message}"></strong>
+        </div>
+        <h2 class="mb-5">Добавить учебную программу</h2>
+        <form action="/subs/add" method="post" enctype="multipart/form-data">
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Название</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="text" name="name" required=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Дни занятий</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="text" name="spec" required=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Количество уроков</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="number" name="modules" value="1" min="1"
+                                                     max="100" step="1" required></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Время прохождения</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="time" name="time" required=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Уровень сложности</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="text" name="complexity" required="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Изображение</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="file" accept="image/*" name="file"
+                                                     required=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col">
+                    <div class="row d-xl-flex align-items-xl-center">
+                        <div class="col-xl-4"><span>Описание (опционально)</span></div>
+                        <div class="col-xl-8"><input class="form-control" type="text" name="description"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-xl-flex" style="margin-bottom: 10px;">
+                <div class="col d-xl-flex justify-content-xl-start">
+                    <button class="btn btn-success" type="submit" style="margin-right: 10px;">Добавить</button>
+                    <button class="btn btn-dark" type="reset">Очистить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bs-init.js"></script>
+</body>
+
+</html>

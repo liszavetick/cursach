@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Занятия</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: linear-gradient(to top, white, white)">
+<div th:insert="blocks/nav :: nav"></div>
+<section class="text-center testimonials">
+    <div class="container">
+        <h2 class="mb-5">Занятия</h2>
+        <div th:if="${role == 'MANAGER'}" class="row" style="margin: 10px -12px;">
+            <div class="col-lg-4 col-xl-12"><a class="btn btn-success" role="button" href="/subs/add" style="background: rgb(255,0,61); color: #fff; border: 0px">Добавить учебную
+                программу</a>
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col">
+                <h4 align="center">
+                    Гарантируем хороших преподавателей, с опытом работы от 10 лет
+                </h4>
+                <hr>
+                <h4 style="color: rgb(255,0,61)" align="center">
+                    Если вы не улучшите навыки английского, мы вернём деньги за курс
+                </h4>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <hr>
+        <form action="/subs/search/" method="post">
+            <div class="row">
+                <div class="col-auto">
+                    <a href="/subs" class="btn btn-secondary" style="background:#333; border: 0px; color: white">Сбросить</a>
+                </div>
+                <div class="col">
+                    <input type="text" name="name" class="form-control" placeholder="Название">
+                </div>
+                <div class="col">
+                    <input type="text" name="category" class="form-control" placeholder="Дни занятий">
+                </div>
+                <div class="col-auto">
+                    <select name="sort" class="form-select">
+                        <option value="min">Количество уроков по возрастанию</option>
+                        <option value="max">Количество уроков по убыванию</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary" type="submit" style="background:#333; border: 0px;">Поиск</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div class="row">
+            <div th:each="sub : ${subs}" class="col-3" style="margin-bottom: 10px;">
+                <img th:src="'/img/' + ${sub.file}" style="border-radius: 30px;padding: 5px;" width="100%">
+                <h3 th:text="${sub.name}"></h3>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Дни занятий: <span
+                        th:text="${sub.spec}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Количество уроков: <span
+                        th:text="${sub.modules}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Время прохождения <span
+                        th:text="${sub.time}"></span></p>
+                <p class="text-start" style="font-size: 20px;margin-bottom: 0;">Уровень сложности: <span
+                        th:text="${sub.complexity}"></span>></p>
+                <p th:if="${sub.description.length() > 0}" class="text-start" style="font-size: 20px;margin-bottom: 0;">
+                    Описание: <span th:text="${sub.description}"></span></p>
+                <form th:if="${role == 'CLIENT' and !user.inMySubs(sub.id)}" th:action="'/subs/buy/' + ${sub.id}"
+                      method="post" class="mt-1">
+                    <div class="row">
+                        <div class="col">
+                            <select name="teacherId" class="form-select" style="width: 100%">
+                                <option th:each="t : ${teachers}" th:value="${t.id}" th:label="${t.name}"></option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-success" type="submit" style="background: rgb(255,0,61); color:#fff; border:0px;">Изучить</button>
+                        </div>
+                    </div>
+                </form>
+                <a th:if="${role == 'MANAGER'}" class="btn btn-success" role="button"
+                   th:href="'/subs/edit/' + ${sub.id}" style="margin-right: 10px;margin-top: 5px; background: #333; color:#fff; border:0px">Редактировать</a>
+                <a th:if="${role == 'MANAGER'}" class="btn btn-danger" role="button"
+                   th:href="'/subs/delete/' + ${sub.id}" style="margin-top: 5px; background: rgb(255,0,61); color:#fff; border:0px">Удалить</a>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bs-init.js"></script>
+</body>
+
+</html>
